@@ -23,27 +23,14 @@ public class FracCalc {
     //EXTRA CREDIT: shows error message when erroneous input is provided
     public static String produceAnswer(String input) { 
     	String[] splitInput = input.split(" ");
-    	int[] firstOperand = makeRealFraction(splitInput[0]);
-    	int[] secondOperand = makeRealFraction(splitInput[2]);
-    	if(firstOperand[2] == 0 || secondOperand[2] == 0) {
-    		return "ERROR: Cannot divide by zero.";
-    	}
-    	int[] firstImproper = toImproperFrac(firstOperand);
-    	int[] secondImproper = toImproperFrac(secondOperand);
-    	int[] answer = new int[2];
-    	if(splitInput[1].equals("+")) {
-    		answer = add(firstImproper, secondImproper);
-    	}else if(splitInput[1].equals("-")) {
-    		answer = subtract(firstImproper, secondImproper);
-    	}else if(splitInput[1].equals("*")) {
-    		answer = multiply(firstImproper, secondImproper);
-    	}else if(splitInput[1].equals("/")){
-    		answer = divide(firstImproper, secondImproper);
-    	}else {
-    		return "ERROR: Input is in an invalid format.";
-    	}
-    	reduce(answer);
-        return toMixedNum(answer);
+    	String firstOperand = splitInput[0];
+    	String secondOperand = splitInput[2];
+    	String operator = splitInput[1];
+    	Fraction operand1 = new Fraction(firstOperand);
+    	Fraction operand2 = new Fraction(secondOperand);
+    	Fraction answer = new Fraction();
+    	//answer = operand1.doMath(operator, operand2);
+    	return answer.toString();
     }
     //gets the operand and parses the whole number, numerator, and denominator to integers
     public static int[] makeRealFraction(String operand) {
