@@ -1,10 +1,11 @@
 package fracCalc;
 import java.util.*;
-/* This program does various operations (addition, subtraction, multiplication, and division) with two given fractions. 
- * The program first converts each operand into an improper fraction, does the math with the operation the user chose, and converts to a mixed number.
+
+/* This class is the client code for the Fraction class.
+ * This program uses the Fraction object to do various operations (addition, subtraction, multiplication, and division) with two given fractions. 
  * 
  * @author Douglas Hong
- * @version 11/15/2018
+ * @version 1/22/19
  */
 public class FracCalc {
 	//the main method handles the userInput and prints out the output from produceAnswer
@@ -20,7 +21,6 @@ public class FracCalc {
         System.out.println("Calculator stopped");
     }
     //produceAnswer parses the operands in the user's input, does the operations with them, and returns a String mixed number
-    //EXTRA CREDIT: shows error message when erroneous input is provided
     public static String produceAnswer(String input) { 
     	String[] splitInput = input.split(" ");
     	String firstOperand = splitInput[0];
@@ -28,9 +28,9 @@ public class FracCalc {
     	String operator = splitInput[1];
     	Fraction operand1 = new Fraction(firstOperand);
     	Fraction operand2 = new Fraction(secondOperand);
-    	Fraction answer = new Fraction();
-    	//answer = operand1.doMath(operator, operand2);
-    	return answer.toString();
+    	//Fraction answer = new Fraction();
+    	String answer = operand1.doMath(operator, operand2);
+    	return answer;
     }
     //gets the operand and parses the whole number, numerator, and denominator to integers
     public static int[] makeRealFraction(String operand) {
