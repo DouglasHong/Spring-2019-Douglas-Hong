@@ -5,8 +5,9 @@ import java.util.*;
  * This program uses the Fraction object to do various operations (addition, subtraction, multiplication, and division) with two given fractions. 
  * 
  * @author Douglas Hong
- * @version 1/22/19
+ * @version 1/23/2019
  */
+
 public class FracCalc {
 	//the main method handles the userInput and prints out the output from produceAnswer
     public static void main(String[] args) {

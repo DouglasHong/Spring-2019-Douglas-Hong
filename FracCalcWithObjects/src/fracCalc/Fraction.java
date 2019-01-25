@@ -1,5 +1,12 @@
 package fracCalc;
 import java.util.*;
+
+/* This class contains the Fraction object, which holds the values in a fraction and does various operations.
+ * 
+ * @author Douglas Hong
+ * @version 1/23/2019
+ */
+
 public class Fraction {
 	private int wholeNum;
 	private int numerator;
