@@ -8,7 +8,7 @@ import java.util.*;
  */
 
 public class Fraction {
-	//these are the fields
+	//these are the fields for the object
 	private int wholeNum;
 	private int numerator;
 	private int denominator;

@@ -9,7 +9,7 @@ import java.util.*;
  */
 
 public class FracCalc {
-	//the main method handles the userInput and prints out the output from produceAnswer
+	//the main method gets the userInput and prints out the output from produceAnswer
     public static void main(String[] args) {
         Scanner userInput = new Scanner(System.in);
         System.out.println("Please type the first operand (fraction), the operator (+,-,*,/), and the second operand (fraction) (Type 'quit' to quit)");
