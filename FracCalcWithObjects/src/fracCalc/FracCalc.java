@@ -21,7 +21,7 @@ public class FracCalc {
         }
         System.out.println("Calculator stopped");
     }
-    //produceAnswer parses the operands in the user's input, does the operations with them, and returns a String mixed number
+    //produceAnswer makes instances of Fraction, does operations, and returns a String mixed number
     public static String produceAnswer(String input) { 
     	String[] splitInput = input.split(" ");
     	Fraction firstOperand = new Fraction(splitInput[0]);

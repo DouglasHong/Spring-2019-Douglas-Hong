@@ -8,10 +8,11 @@ import java.util.*;
  */
 
 public class Fraction {
+	//these are the fields
 	private int wholeNum;
 	private int numerator;
 	private int denominator;
-	private int sign;
+	//first constructor accepts the operand, parses integers, and makes the fraction improper
 	public Fraction(String operand) {
     	if(operand.contains("_")) {
     		String[] wholeAndFrac = operand.split("_");
@@ -28,20 +29,13 @@ public class Fraction {
     	}
     	toImproperFrac();
 	}
+	//second constructor that sets a fraction with 0_0/1
 	public Fraction() {
 		wholeNum = 0;
 		numerator = 0;
 		denominator = 1;
-		sign = 1;
 	}
-	public void toImproperFrac() {
-    	if(wholeNum >= 0) {
-    		numerator = (wholeNum*denominator+numerator);
-    	}else {
-    		numerator = (wholeNum*denominator-numerator);
-    	}
-    	wholeNum = 0;
-    }
+	//does all the math operations
 	public Fraction doMath(String operator, Fraction operand) {
 		int gcf = gcf(denominator, operand.denominator);
 		if(operator.equals("+")) {
@@ -65,27 +59,34 @@ public class Fraction {
 		answer.denominator = denominator;
 		return answer;
 	}
+	//converts Fraction to a String in the form wholeNum_numerator/denominator
 	public String toString() {
-		//gets rid of numerator and denominator if numerator = 0
+		//removes negative sign in front of denominator by multiplying fraction by -1
+		if(denominator < 0) {
+			denominator *= -1;
+			numerator *= -1;
+		}
+		//removes negative sign in front of numerator if there is a whole number other than 0
+		if(numerator < 0 && wholeNum != 0) {
+			numerator *= -1;
+		}
 		String output = wholeNum + "_" + numerator + "/" + denominator;
-		if(output.substring(output.indexOf("_") + 1).startsWith("0")) {
-  			output = output.substring(0, output.indexOf("_"));
-  		}
-		//gets rid of 0 as whole number
-  		if(output.startsWith("0")) { 
-  			output = output.substring(output.indexOf("_") + 1, output.length());
-  		}
-  		//formats the mixed number by getting rid of improper negative signs in the numerator and/or denominator
-  		if(numerator < 0 && denominator < 0 && output.indexOf("_") != -1) {
-  			output = wholeNum + "_" + numerator*-1 + "/" + denominator*-1;
-  		}else if(numerator < 0 && denominator > 0 && output.indexOf("_") != -1) {
-  			output = wholeNum + "_" + numerator*-1 + "/" + denominator;
-  		}else if(numerator > 0 && denominator < 0 && output.indexOf("_") != -1) {
-  			output = wholeNum + "_" + numerator + "/" + denominator*-1;
-  		}else if(denominator < 0 && output.indexOf("_") == -1 && output.indexOf("/") != -1) { 
-  			output = numerator*-1 + "/" + denominator*-1;
-  		}
+		if(wholeNum == 0) {
+			output = numerator + "/" + denominator;
+		}
+		if(numerator == 0) {
+			output = wholeNum + "";
+		}
 		return output;
+	}
+	//converts to improper fraction
+	public void toImproperFrac() {
+	    if(wholeNum >= 0) {
+	    	numerator = (wholeNum*denominator+numerator);
+	    }else {
+	    	numerator = (wholeNum*denominator-numerator);
+	    }
+	    wholeNum = 0;
 	}
 	//determines the greatest common factor of two integers
   	public int gcf(int num1, int num2) {
