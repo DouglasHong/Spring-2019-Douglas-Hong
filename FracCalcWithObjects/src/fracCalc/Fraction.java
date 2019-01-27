@@ -29,7 +29,7 @@ public class Fraction {
     	}
     	toImproperFrac();
 	}
-	//second constructor that sets a fraction with 0_0/1
+	//second constructor sets a fraction to 0_0/1
 	public Fraction() {
 		wholeNum = 0;
 		numerator = 0;
@@ -37,26 +37,26 @@ public class Fraction {
 	}
 	//does all the math operations
 	public Fraction doMath(String operator, Fraction operand) {
-		int gcf = gcf(denominator, operand.denominator);
+		int gcf = gcf(denominator, operand.getDenominator());
 		if(operator.equals("+")) {
-	    	numerator = (numerator *(gcf/denominator)) + (operand.numerator*(gcf/operand.denominator));
+	    	numerator = numerator *(gcf/denominator) + operand.getNumerator()*(gcf/operand.getDenominator());
 	    	denominator = gcf;
 		}else if(operator.equals("-")) {
-			numerator = (numerator *(gcf/denominator)) - (operand.numerator*(gcf/operand.denominator));
+			numerator = numerator *(gcf/denominator) - operand.getNumerator()*(gcf/operand.getDenominator());
 	    	denominator = gcf;
 		}else if(operator.equals("*")) {
-			numerator *= operand.numerator;
-			denominator *= operand.denominator;
+			numerator *= operand.getNumerator();
+			denominator *= operand.getDenominator();
 		}else {
-			numerator *= operand.denominator;
-			denominator *= operand.numerator;
+			numerator *= operand.getDenominator();
+			denominator *= operand.getNumerator();
 		}
 		reduce();
 		toMixedNum();
 		Fraction answer = new Fraction();
-		answer.wholeNum = wholeNum;
-		answer.numerator = numerator;
-		answer.denominator = denominator;
+		answer.setWholeNum(wholeNum);
+		answer.setNumerator(numerator);
+		answer.setDenominator(denominator);
 		return answer;
 	}
 	//converts Fraction to a String in the form wholeNum_numerator/denominator
@@ -82,31 +82,15 @@ public class Fraction {
 	//converts to improper fraction
 	public void toImproperFrac() {
 	    if(wholeNum >= 0) {
-	    	numerator = (wholeNum*denominator+numerator);
+	    	numerator = wholeNum*denominator+numerator;
 	    }else {
-	    	numerator = (wholeNum*denominator-numerator);
+	    	numerator = wholeNum*denominator-numerator;
 	    }
 	    wholeNum = 0;
 	}
 	//determines the greatest common factor of two integers
   	public int gcf(int num1, int num2) {
   		return num1 * num2;
-  	}
-  	//reduces the fraction by finding the least common denominator and dividing the numbers by that number
-  	public void reduce() {
-  		int greaterNum;
-  		//uses absolute value so it also works with negative numbers
-  		if(absValue(numerator) > absValue(denominator)) {
-  			greaterNum = absValue(numerator);
-  		}else {
-  			greaterNum = absValue(denominator);
-  		}
-  		for(int i = greaterNum; i > 1; i--) {
-  			if(isDivisibleBy(absValue(numerator), i) && isDivisibleBy(absValue(denominator), i)) {
-  				numerator /= i;
-  				denominator /= i;
-  			}
-  		}
   	}
   	//returns the absolute value of the number passed
   	public int absValue(int number) {
@@ -124,9 +108,44 @@ public class Fraction {
   			return false;
   		}
   	}
+    //reduces the fraction by finding the least common denominator and dividing the numbers by that number
+  	public void reduce() {
+  		int greaterNum;
+  		//uses absolute value so it also works with negative numbers
+  		if(absValue(numerator) > absValue(denominator)) {
+  			greaterNum = absValue(numerator);
+  		}else {
+  			greaterNum = absValue(denominator);
+  		}
+  		for(int i = greaterNum; i > 1; i--) {
+  			if(isDivisibleBy(absValue(numerator), i) && isDivisibleBy(absValue(denominator), i)) {
+  				numerator /= i;
+  				denominator /= i;
+  			}
+  		}
+  	}
     //converts an improper fraction to a mixed number 
   	public void toMixedNum() {
   		wholeNum = numerator/denominator;
   		numerator = numerator%denominator;
   	}
+  	//getters and setters for wholeNum, numerator, and denominator
+	public int getWholeNum() {
+		return wholeNum;
+	}
+	public void setWholeNum(int wholeNum) {
+		this.wholeNum = wholeNum;
+	}
+	public int getNumerator() {
+		return numerator;
+	}
+	public void setNumerator(int numerator) {
+		this.numerator = numerator;
+	}
+	public int getDenominator() {
+		return denominator;
+	}
+	public void setDenominator(int denominator) {
+		this.denominator = denominator;
+	}
 }
