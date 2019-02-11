@@ -1,6 +1,9 @@
-
-public class Wizard extends Traveler
-{
+/* This is the Wizard subclass, which extends Traveler, needs a color, and travels 3 times more miles.
+ * 
+ * @author Douglas Hong
+ * @version 2/11/2019
+ */
+public class Wizard extends Traveler{
 	//Call Traveler's constructor (look it up p587) to set the name field and then 
 	//   set the color field for this class   
 	//Wizards travel 3 times as far as other travelers in their party because they scout ahead.
@@ -9,21 +12,15 @@ public class Wizard extends Traveler
 	//  Ex.  Calling travel(50) would increase a Wizard's distance traveled by 150.
 	//Wizards have colors associated with them.  Saruman the White, Gandalf the Grey, etc
 	//  Override the Traveler's getName method to append the Wizard's color 
-	
 	private String color;
-	
-	public Wizard(String name, String color)
-	{
-	
+	public Wizard(String name, String color){
+		super(name);
+		this.color = color;
 	}
-	
-	public void travel(int miles)
-	{
-		
+	public void travel(int miles){
+		super.travel(miles*3);
 	}
-	
-	public String getName()
-	{
-		
+	public String getName(){
+		return super.getName() + " the " + color;
 	}
 }

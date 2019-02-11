@@ -1,15 +1,14 @@
 import java.util.ArrayList;
-
-public class ThereAndBackAgain 
-{
-
-	public static void main(String[] args) 
-	{
-		
+/* This is the client code for Traveler, Hobbit, Dwarf, and Wizard. This calls the subclasses and makes an array of Travelers.
+ * 
+ * @author Douglas Hong
+ * @version 2/11/2019
+ */
+public class ThereAndBackAgain {
+	public static void main(String[] args) {
 		Hobbit frodo = new Hobbit("Frodo");
 		Hobbit sam = new Hobbit("Sam");
 		Dwarf gimli = new Dwarf("Gimli");
-		
 		// Create a traveling party called party1 by creating an array of Travelers 
 		// and filling it with frodo, sam, and gimli
 		// Then, use a loop to make all travelers go a distance of 50 miles  
@@ -25,8 +24,5 @@ public class ThereAndBackAgain
 			System.out.println(currentTraveler.getName() + " has traveled " + currentTraveler.getDistanceTraveled() + " miles.");
 		}
 		System.out.println();
-
 	}
-
-	
 }
