@@ -1,4 +1,4 @@
-/* The Hobbit is a subclass of Traveler. It creates a name for the Hobbit and sets ringObsessed to false.s
+/* The Hobbit is a subclass of Traveler. It creates a name for the Hobbit and sets ringObsessed to false.
  * 
  * @author Douglas Hong
  * @version 2/11/2019

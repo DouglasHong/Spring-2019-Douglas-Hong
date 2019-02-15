@@ -1,4 +1,4 @@
-/* Traveler is the superclass for Hobbit, Dwarf, and Wizard. It contains a name and the distance traveled.
+/* Traveler is the superclass for Hobbit, Dwarf, and Wizard. It contains a name, the distance traveled, the travel method, and some getters.
  * 
  * @author Douglas Hong
  * @version 2/11/2019

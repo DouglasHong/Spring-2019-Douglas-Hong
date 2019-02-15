@@ -1,4 +1,4 @@
-/* Dwarf is a subclass of Traveler. The class extends Traveler and creates a name for a Dwarf.
+/* Dwarf is a subclass of Traveler. The class extends Traveler and holds a name for a Dwarf.
  * 
  * @author Douglas Hong
  * @version 2/11/2019
