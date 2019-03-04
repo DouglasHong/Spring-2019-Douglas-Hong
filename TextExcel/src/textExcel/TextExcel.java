@@ -14,7 +14,7 @@ public class TextExcel
         String expression = userInput.nextLine();
         while(!expression.equalsIgnoreCase("quit")) {
         	Spreadsheet sheet = new Spreadsheet();
-        	System.out.println(sheet.processCommand("cell"));
+        	System.out.println(sheet.processCommand(expression));
         	System.out.println("Input:(Type 'quit' to quit)");
         	expression = userInput.nextLine();
         }
