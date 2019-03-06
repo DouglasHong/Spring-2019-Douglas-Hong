@@ -1,3 +1,4 @@
+
 /*
  * @author Douglas Hong
  * @version 3/4/2019
@@ -12,6 +13,7 @@ public class EmptyCell implements Cell {
 		
 	}
 	public String fullCellText() {
-		
+	
 	}
 }
+

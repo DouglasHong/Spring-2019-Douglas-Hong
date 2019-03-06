@@ -1,31 +1,33 @@
+/*
+ * @author Douglas Hong
+ * @version 3/6/2019
+ */
 package textExcel;
 
 // Update this file with your own code.
 
 public class Spreadsheet implements Grid{
-	//constructor
-	public Spreadsheet () {
-		//initializes 2D array with elements containing empty cells
+	private int row;
+	private int col;
+	public Spreadsheet() {
+		//make 2D array with all elements containing EmptyCellObjects
 	}
 	@Override
-	public String processCommand(String command)
-	{
-		// TODO Auto-generated method stub
-		return null;
+	public String processCommand(String command){
+		return "";
 	}
-
 	@Override
 	public int getRows()
 	{
 		// TODO Auto-generated method stub
-		return 0;
+		return row;
 	}
 
 	@Override
 	public int getCols()
 	{
 		// TODO Auto-generated method stub
-		return 0;
+		return col;
 	}
 
 	@Override
