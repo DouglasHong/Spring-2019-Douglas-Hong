@@ -9,8 +9,10 @@ package textExcel;
 public class Spreadsheet implements Grid{
 	private int row;
 	private int col;
+	
 	public Spreadsheet() {
 		//make 2D array with all elements containing EmptyCellObjects
+		 EmptyCell[][] empty = new EmptyCell[row][col];
 	}
 	@Override
 	public String processCommand(String command){
@@ -20,14 +22,14 @@ public class Spreadsheet implements Grid{
 	public int getRows()
 	{
 		// TODO Auto-generated method stub
-		return row;
+		return 20;
 	}
 
 	@Override
 	public int getCols()
 	{
 		// TODO Auto-generated method stub
-		return col;
+		return 12;
 	}
 
 	@Override

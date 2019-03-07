@@ -11,7 +11,7 @@ public class SpreadsheetLocation implements Location{
 	private int col;
 	public SpreadsheetLocation(String cellName) {
 		col = (int)cellName.charAt(0) - 65;
-		row = Integer.parseInt(cellName.substring(1, cellName.length()));
+		row = Integer.parseInt(cellName.substring(1, cellName.length())) - 1;
 	}
     @Override
     public int getRow(){ // gets row of this location
