@@ -6,7 +6,7 @@ public class TextCell implements Cell{
 		this.text = text;
 	}
 	public String fullCellText() {
-		return ("\" + text + \"");
+		return "\"" + text + "\"";
 	}
 	public String abbreviatedCellText() {
 		String truncated = "";
