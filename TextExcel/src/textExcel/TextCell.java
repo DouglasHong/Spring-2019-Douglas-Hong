@@ -15,4 +15,5 @@ public class TextCell implements Cell{
 		}
 		return truncated;
 	}
+	
 }

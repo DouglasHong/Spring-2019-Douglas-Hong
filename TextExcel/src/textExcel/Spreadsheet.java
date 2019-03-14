@@ -24,14 +24,23 @@ public class Spreadsheet implements Grid{
 	}
 	@Override
 	public String processCommand(String command){
-		if(command.equalsIgnoreCase("clear")){
-			return getGridText();
-		}else if(command.length() == 2 || command.length() == 3) {	
-			
+		SpreadsheetLocation loc = new SpreadsheetLocation(command);
+		if(command.length() == 2 || command.length() == 3) {
+			return sheet[loc.getRow()][loc.getCol()].fullCellText();
+		}else if(command.contains("clear")){
+			if(command.equalsIgnoreCase("clear")) {
+				sheet[loc.getRow()][loc.getCol()] = new EmptyCell();
+			}else {
+				return getGridText();
+			}
+		}else {
+			String[] splitCommand = command.split("=");
+			loc = new SpreadsheetLocation(splitCommand[0]);
+			sheet[loc.getRow()][loc.getCol()] = splitCommand[1];
 		}
-		
 		return "";
 	}
+	
 	@Override
 	public int getRows()
 	{

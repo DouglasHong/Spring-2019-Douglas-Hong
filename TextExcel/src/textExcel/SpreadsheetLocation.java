@@ -11,7 +11,7 @@ public class SpreadsheetLocation implements Location{
 	private int col;
 	public SpreadsheetLocation(String cellName) {
 		cellName = cellName.toUpperCase();
-		col = (int)cellName.charAt(0) - 65;
+		col = cellName.charAt(0) - 'A';
 		row = Integer.parseInt(cellName.substring(1, cellName.length())) - 1;
 	}
     @Override
@@ -19,12 +19,10 @@ public class SpreadsheetLocation implements Location{
         // TODO Auto-generated method stub
         return row;
     }
-
     @Override
     public int getCol() // gets column of this location
     {
         // TODO Auto-generated method stub
         return col;
     }
-
 }

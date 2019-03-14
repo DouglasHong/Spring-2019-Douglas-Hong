@@ -19,9 +19,9 @@ public class TextExcel{
         	System.out.println(sheet.processCommand(expression));
         	//TextCell text = new TextCell(expression);
         	//System.out.println(text.fullCellText());
-        	/*SpreadsheetLocation loc = new SpreadsheetLocation(expression);
+        	SpreadsheetLocation loc = new SpreadsheetLocation(expression);
         	System.out.println(loc.getRow());
-        	System.out.println(loc.getCol());*/
+        	System.out.println(loc.getCol());
         	TestsALL.Helper th = new TestsALL.Helper();
         	System.out.println(th.getText());
         	System.out.println(sheet.getGridText());
@@ -30,4 +30,5 @@ public class TextExcel{
         }
         System.out.println("Spreadsheet stopped");
 	}
+	
 }
