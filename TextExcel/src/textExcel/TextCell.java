@@ -3,17 +3,14 @@ package textExcel;
 public class TextCell implements Cell{
 	private String text;
 	public TextCell(String text) {
-		this.text = text;
+		this.text = text.substring(1, text.length()-1);
 	}
 	public String fullCellText() {
 		return "\"" + text + "\"";
 	}
 	public String abbreviatedCellText() {
-		String truncated = "";
-		for(int i = 0; i < 10; i++) {
-			truncated += text.charAt(i);
-		}
-		return truncated;
+		String truncated = text + "          ";
+		return truncated.substring(0,10);
 	}
 	
 }

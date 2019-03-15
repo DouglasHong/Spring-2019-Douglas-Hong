@@ -34,9 +34,9 @@ public class Spreadsheet implements Grid{
 				return getGridText();
 			}
 		}else {
-			String[] splitCommand = command.split("=");
+			String[] splitCommand = command.split(" = ");
 			loc = new SpreadsheetLocation(splitCommand[0]);
-			sheet[loc.getRow()][loc.getCol()] = splitCommand[1];
+			sheet[loc.getRow()][loc.getCol()] = splitCommand[2];
 		}
 		return "";
 	}
