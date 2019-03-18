@@ -11,7 +11,7 @@ public class EmptyCell implements Cell {
 	// text for individual cell inspection, not truncated or padded
 	 
 	public EmptyCell() {
-		
+		 
 	}
 	public String fullCellText() {
 		return "";
