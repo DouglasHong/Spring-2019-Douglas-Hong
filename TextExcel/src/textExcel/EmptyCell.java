@@ -13,11 +13,11 @@ public class EmptyCell implements Cell {
 	public EmptyCell() {
 		
 	}
-	public String abbreviatedCellText() {
-		
-	}
 	public String fullCellText() {
-	
+		return "";
+	}
+	public String abbreviatedCellText() {
+		return "";
 	}
 }
 
