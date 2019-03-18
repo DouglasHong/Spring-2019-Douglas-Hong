@@ -11,7 +11,7 @@ public class Spreadsheet implements Grid{
 	private int numCol;
 	private Cell[][] sheet;
 	
-	public Spreadsheet() {
+	public Spreadsheet() { 
 		//make 2D array with all elements containing EmptyCellObjects
 		numRow = 20;
 		numCol = 12;

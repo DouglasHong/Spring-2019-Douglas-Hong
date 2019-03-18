@@ -1,6 +1,6 @@
 package textExcel;
 
-public class TextCell implements Cell{
+public class TextCell implements Cell{ 
 	private String text;
 	public TextCell(String text) {
 		this.text = text.substring(1, text.length()-1);

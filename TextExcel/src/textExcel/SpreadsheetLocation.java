@@ -3,7 +3,7 @@
  * @version 3/6/2019
  */
 package textExcel;
-
+ 
 //Update this file with your own code.
 
 public class SpreadsheetLocation implements Location{
