@@ -25,40 +25,35 @@ public class Spreadsheet implements Grid{
 	@Override
 	public String processCommand(String command){
 		if(command.length() == 2 || command.length() == 3) {
-			System.out.println(cellInspection(command));
+			SpreadsheetLocation loc = new SpreadsheetLocation(command);
+			return getCell(loc).fullCellText();
 		}else if(command.substring(0, 5).equalsIgnoreCase("clear")){
-			System.out.println(clear(command));
+			clear(command);
+			return getGridText();
 		}else {
-			System.out.println(assignCell(command));
-		}
-		return "";
+			assignCell(command);
+			return getGridText();
+		}	
 	}
-	public String cellInspection(String input) {
-		SpreadsheetLocation loc = new SpreadsheetLocation(input);
-		return getCell(loc).fullCellText();
-	}
-	public String clear(String input) {
+	public void clear(String input) {
 		if(input.equalsIgnoreCase("clear")) {
 			for(int row = 0; row < numRow; row++) {
 				for(int col = 0; col < numCol; col++) {
 					sheet[row][col] = new EmptyCell();
 				}
 			}
-			return getGridText();
 		}else {
-			String[] splitInput = input.split(" ");
+			String[] splitInput = input.split(" ", 2);
 			SpreadsheetLocation loc = new SpreadsheetLocation(splitInput[1]);
 			sheet[loc.getRow()][loc.getCol()] = new EmptyCell();
-			return getGridText();
 		}
 	}
-	public String assignCell(String input) {
+	public void assignCell(String input) {
 		String[] splitInput = new String[2];
-		splitInput = input.split(" = ");
+		splitInput = input.split(" = ", 2);
 		SpreadsheetLocation loc = new SpreadsheetLocation(splitInput[0]);
 		TextCell newCell = new TextCell(splitInput[1]);
 		sheet[loc.getRow()][loc.getCol()] = newCell;
-		return getGridText();
 	}
 	//
 	public int getRows(){
@@ -95,7 +90,7 @@ public class Spreadsheet implements Grid{
 				grid += "|";
 			}
 		}
-		return grid;
+		return grid + "\n";
 	}
 	
 }

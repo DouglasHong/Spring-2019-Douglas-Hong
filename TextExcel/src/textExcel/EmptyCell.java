@@ -17,7 +17,7 @@ public class EmptyCell implements Cell {
 		return "";
 	}
 	public String abbreviatedCellText() {
-		return "";
+		return "          ";
 	}
 }
 
