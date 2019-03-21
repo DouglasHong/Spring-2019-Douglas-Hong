@@ -24,7 +24,7 @@ public class Spreadsheet implements Grid{
 	}
 	@Override
 	public String processCommand(String command){
-		if(command.length() == 2 || command.length() == 3) {
+		if(command.length() <= 3) {
 			SpreadsheetLocation loc = new SpreadsheetLocation(command);
 			return getCell(loc).fullCellText();
 		}else if(command.substring(0, 5).equalsIgnoreCase("clear")){
