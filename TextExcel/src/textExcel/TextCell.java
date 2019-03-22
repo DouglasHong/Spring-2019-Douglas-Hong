@@ -13,7 +13,7 @@ public class TextCell implements Cell{
 		return "\"" + text + "\"";
 	}
 	public String abbreviatedCellText() {
-		String truncated = text + "          ";
-		return truncated.substring(0,10);
+		String abbrev = text + "          ";
+		return abbrev.substring(0,10);
 	}
 }

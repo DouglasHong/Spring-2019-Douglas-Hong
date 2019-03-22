@@ -24,14 +24,15 @@ public class Spreadsheet implements Grid{
 	}
 	@Override
 	public String processCommand(String command){
+		SpreadsheetLocation loc;
 		if(command.length() <= 3) {
-			SpreadsheetLocation loc = new SpreadsheetLocation(command);
+			loc = new SpreadsheetLocation(command);
 			return getCell(loc).fullCellText();
 		}else if(command.substring(0, 5).equalsIgnoreCase("clear")){
 			clear(command);
 			return getGridText();
 		}else {
-			assignCell(command);
+			assignCell(command); // assigns percent as well
 			return getGridText();
 		}	
 	}
@@ -52,8 +53,13 @@ public class Spreadsheet implements Grid{
 		String[] splitInput = new String[2];
 		splitInput = input.split(" = ", 2);
 		SpreadsheetLocation loc = new SpreadsheetLocation(splitInput[0]);
-		TextCell newCell = new TextCell(splitInput[1]);
-		sheet[loc.getRow()][loc.getCol()] = newCell;
+		if(splitInput[1].endsWith("%")) {
+			PercentCell percent = new PercentCell(splitInput[1]);
+			sheet[loc.getRow()][loc.getCol()] = percent;
+		}else{
+			TextCell text = new TextCell(splitInput[1]);
+			sheet[loc.getRow()][loc.getCol()] = text;
+		}
 	}
 	//
 	public int getRows(){

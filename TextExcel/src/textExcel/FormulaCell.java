@@ -7,12 +7,12 @@ public class FormulaCell extends RealCell {
 		super(text);
 	}
 	public String fullCellText() {
-		return super.fullCellText();
+		return text;
 	}
 	public String abbreviatedCellText() {
-		return super.abbreviatedCellText();
+		return text;
 	}
 	public double getDoubleValue() {
-		return value;
+		return 0;
 	}
 }
