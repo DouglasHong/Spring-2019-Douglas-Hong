@@ -2,19 +2,17 @@ package textExcel;
 
 public class PercentCell extends RealCell { 
 	private String text;
-	private double value;
 	public PercentCell(String text) {
 		super(text);
 	}
 	public String fullCellText() {
-		return text;
+		return super.fullCellText();
 	}
 	public String abbreviatedCellText() {
-		//String abbrev = text.charAt(1) + "%";
-		return super.abbreviatedCellText();
+		String[] truncated = super.abbreviatedCellText().split(".", 2);
+		return truncated[0] + "%";
 	}
 	public double getDoubleValue() {
-		value = Double.parseDouble(text.substring(0, text.length() - 1));
-		return value/100;
+		return Double.parseDouble(text.substring(0, text.length() - 1))/100;
 	}
 }

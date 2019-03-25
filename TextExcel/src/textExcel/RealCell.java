@@ -2,7 +2,6 @@ package textExcel;
 
 public class RealCell implements Cell {
 	private String text;
-	private double value;
 	public RealCell(String text) {
 		this.text = text;
 	}
@@ -15,7 +14,6 @@ public class RealCell implements Cell {
 		return abbrev.substring(0,10);
 	}
 	public double getDoubleValue() {
-		value = Double.parseDouble(text);
-		return value;
+		return Double.parseDouble(text);
 	}
 }

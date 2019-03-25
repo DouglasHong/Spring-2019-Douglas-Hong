@@ -31,7 +31,7 @@ public class Spreadsheet implements Grid{
 		}else if(command.substring(0, 5).equalsIgnoreCase("clear")){
 			clear(command);
 			return getGridText();
-		}else {
+		}else{
 			assignCell(command); // assigns percent as well
 			return getGridText();
 		}	
@@ -53,9 +53,9 @@ public class Spreadsheet implements Grid{
 		String[] splitInput = new String[2];
 		splitInput = input.split(" = ", 2);
 		SpreadsheetLocation loc = new SpreadsheetLocation(splitInput[0]);
-		if(splitInput[1].endsWith("%")) {
-			PercentCell percent = new PercentCell(splitInput[1]);
-			sheet[loc.getRow()][loc.getCol()] = percent;
+		if(splitInput[1].endsWith("%")){
+			PercentCell text = new PercentCell(splitInput[1]);
+			sheet[loc.getRow()][loc.getCol()] = text;
 		}else{
 			TextCell text = new TextCell(splitInput[1]);
 			sheet[loc.getRow()][loc.getCol()] = text;

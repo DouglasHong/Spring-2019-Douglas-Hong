@@ -5,7 +5,6 @@
 package textExcel;
  
 //Update this file with your own code.
-
 public class SpreadsheetLocation implements Location{
 	private int row;
 	private int col;
