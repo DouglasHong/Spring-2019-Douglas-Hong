@@ -54,11 +54,13 @@ public class Spreadsheet implements Grid{
 		splitInput = input.split(" = ", 2);
 		SpreadsheetLocation loc = new SpreadsheetLocation(splitInput[0]);
 		if(splitInput[1].endsWith("%")){
-			PercentCell text = new PercentCell(splitInput[1]);
-			sheet[loc.getRow()][loc.getCol()] = text;
-		}else{
-			TextCell text = new TextCell(splitInput[1]);
-			sheet[loc.getRow()][loc.getCol()] = text;
+			sheet[loc.getRow()][loc.getCol()] = new PercentCell(splitInput[1]);
+		}else if(splitInput[1].startsWith("(")) {
+			sheet[loc.getRow()][loc.getCol()] = new FormulaCell(splitInput[1]);
+		}else if(splitInput[1].contains("\"")){
+			sheet[loc.getRow()][loc.getCol()] = new TextCell(splitInput[1]);
+		}else {
+			sheet[loc.getRow()][loc.getCol()] = new ValueCell(splitInput[1]);
 		}
 	}
 	//

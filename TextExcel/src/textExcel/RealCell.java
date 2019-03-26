@@ -7,7 +7,7 @@ public class RealCell implements Cell {
 	}
 	public String fullCellText() {
 		//if they put 12, truncate .0 from double
-		return getDoubleValue() + "";
+		return text;
 	}
 	public String abbreviatedCellText() {
 		String abbrev = text + "          ";

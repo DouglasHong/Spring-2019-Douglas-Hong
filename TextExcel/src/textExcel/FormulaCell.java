@@ -2,15 +2,15 @@ package textExcel;
 
 public class FormulaCell extends RealCell {
 	private String text;
-	private double value;
 	public FormulaCell(String text) {
 		super(text);
+		this.text = text;
 	}
 	public String fullCellText() {
-		return text;
+		return super.fullCellText();
 	}
 	public String abbreviatedCellText() {
-		return text;
+		return super.abbreviatedCellText();
 	}
 	public double getDoubleValue() {
 		return 0;
