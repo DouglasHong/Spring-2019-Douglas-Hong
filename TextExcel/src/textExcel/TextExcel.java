@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class TextExcel{
 	public static void main(String[] args){
 		Scanner userInput = new Scanner(System.in);
-        System.out.println("Enter a command:(Type 'quit' to quit)");
+        System.out.println("Welcome to TextExcel! Enter a command:(Type 'quit' to quit)");
         String expression = userInput.nextLine();
         Spreadsheet sheet = new Spreadsheet();
         while(!expression.equalsIgnoreCase("quit")) {

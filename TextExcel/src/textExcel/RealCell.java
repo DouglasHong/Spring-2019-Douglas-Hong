@@ -6,7 +6,6 @@ public class RealCell implements Cell {
 		this.text = text;
 	}
 	public String fullCellText() {
-		//if they put 12, truncate .0 from double
 		return text; //return getDoubleValue() + ""; ??????
 	}
 	public String abbreviatedCellText() {

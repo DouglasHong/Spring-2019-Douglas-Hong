@@ -12,7 +12,7 @@ public class Spreadsheet implements Grid{
 	private Cell[][] sheet;
 	
 	public Spreadsheet() { 
-		//make 2D array with all elements containing EmptyCellObjects
+		//makes a 2D array with all elements containing EmptyCells
 		numRow = 20;
 		numCol = 12;
 		sheet = new Cell[numRow][numCol];
@@ -32,7 +32,7 @@ public class Spreadsheet implements Grid{
 			clear(command);
 			return getGridText();
 		}else{
-			assignCell(command); // assigns percent as well
+			assignCell(command); // assigns percent, value, formula, and text cells
 			return getGridText();
 		}	
 	}

@@ -10,7 +10,14 @@ public class PercentCell extends RealCell {
 		return getDoubleValue() + "";
 	}
 	public String abbreviatedCellText() {
-		return (int)(getDoubleValue()*100) + "%";
+		String abbrev = (int)(getDoubleValue()*100) + "";
+		if(abbrev.length() > 10) {
+			abbrev = abbrev.substring(0, 10) + "%";
+		}else {
+			abbrev += "%          ";
+			abbrev = abbrev.substring(0, 10);
+		}
+		return abbrev;
 	}
 	public double getDoubleValue() {
 		return Double.parseDouble(text.substring(0, text.length()-1))/100;
