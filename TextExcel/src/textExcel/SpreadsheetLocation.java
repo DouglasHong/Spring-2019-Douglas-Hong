@@ -1,27 +1,26 @@
-/*
+package textExcel;
+ 
+/* SpreadsheetLocation gives the location of the cell passed as [row][col]
+ * 
  * @author Douglas Hong
  * @version 3/6/2019
  */
-package textExcel;
- 
-//Update this file with your own code.
+
 public class SpreadsheetLocation implements Location{
 	private int row;
 	private int col;
+	//this is the constructor, which puts in the value of col and row
 	public SpreadsheetLocation(String cellName) {
 		cellName = cellName.toUpperCase();
 		col = cellName.charAt(0) - 'A';
 		row = Integer.parseInt(cellName.substring(1, cellName.length())) - 1;
 	}
-    @Override
-    public int getRow(){ // gets row of this location
-        // TODO Auto-generated method stub
+	// gets row of this location
+    public int getRow(){ 
         return row;
     }
-    @Override
-    public int getCol() // gets column of this location
-    {
-        // TODO Auto-generated method stub
+    // gets column of this location
+    public int getCol() {
         return col;
     }
 }

@@ -1,18 +1,17 @@
-/*
+package textExcel;
+
+/* Spreadsheet handles the user input and prints a full grid.
+ * 
  * @author Douglas Hong
  * @version 3/6/2019
  */
-package textExcel;
-
-// Update this file with your own code.
-
 public class Spreadsheet implements Grid{
 	private int numRow;
 	private int numCol;
 	private Cell[][] sheet;
 	
+	//makes a 2D array with all elements containing EmptyCells
 	public Spreadsheet() { 
-		//makes a 2D array with all elements containing EmptyCells
 		numRow = 20;
 		numCol = 12;
 		sheet = new Cell[numRow][numCol];
@@ -22,7 +21,7 @@ public class Spreadsheet implements Grid{
 			}
 		}
 	}
-	@Override
+	//processes the user input and stores values in the correct cells
 	public String processCommand(String command){
 		SpreadsheetLocation loc;
 		if(command.length() <= 3) {
@@ -36,6 +35,7 @@ public class Spreadsheet implements Grid{
 			return getGridText();
 		}	
 	}
+	//clears the whole grid, or clears only one cell
 	public void clear(String input) {
 		if(input.equalsIgnoreCase("clear")) {
 			for(int row = 0; row < numRow; row++) {
@@ -49,6 +49,7 @@ public class Spreadsheet implements Grid{
 			sheet[loc.getRow()][loc.getCol()] = new EmptyCell();
 		}
 	}
+	//assigns values to a PercentCell, FormulaCell, ValueCell, or TextCell
 	public void assignCell(String input) {
 		String[] splitInput = new String[2];
 		splitInput = input.split(" = ", 2);
@@ -63,20 +64,19 @@ public class Spreadsheet implements Grid{
 			sheet[loc.getRow()][loc.getCol()] = new ValueCell(splitInput[1]);
 		}
 	}
-	//
+	//gets the total number of rows
 	public int getRows(){
 		return numRow;
 	}
-	//
+	//gets the total number of columns
 	public int getCols(){
 		return numCol;
 	}
-	//
+	//gets the location of the cell passed in
 	public Cell getCell(Location loc){
 		return sheet[loc.getRow()][loc.getCol()];
 	}
-
-	@Override
+	//prints the whole grid, along with the cells in it
 	public String getGridText(){
 		String grid = "   |";
 		char columnChar = 'A';

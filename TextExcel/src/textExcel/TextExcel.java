@@ -3,11 +3,11 @@ package textExcel;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-/*
+/* This is the client code for TextExcel. It uses a while loop to execute the prompt and quit when the user types 'quit'.
+ * 
  * @author Douglas Hong
  * @version 3/4/2019 
  */
-// Update this file with your own code.
 
 public class TextExcel{
 	public static void main(String[] args){
