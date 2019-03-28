@@ -7,7 +7,7 @@ package textExcel;
  */	
 public class RealCell implements Cell {
 	private String text;
-	//the contructor only has to store a String text, which is the user input
+	//the contructor only has to store a String, which is the user input
 	public RealCell(String text) {
 		this.text = text;
 	}

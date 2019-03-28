@@ -9,11 +9,7 @@ public class TextCell implements Cell{
 	private String text;
 	//the constructor stores a String/user input
 	public TextCell(String text) {
-		if(text.startsWith("\"")) { //for strings
-			this.text = text.substring(1, text.length()-1);
-		}else { //for numbers
-			this.text = text;
-		}
+		this.text = text.substring(1, text.length()-1);
 	}
 	//prints the full String with quotes around it
 	public String fullCellText() {
