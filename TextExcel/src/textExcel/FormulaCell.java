@@ -11,7 +11,7 @@ public class FormulaCell extends RealCell {
 		super(text);
 		this.text = text;
 	}
-	//calls the super's fullCellText to get number value in cell inspection
+	//calls the super's fullCellText for cell inspection
 	public String fullCellText() {
 		return super.fullCellText();
 	}

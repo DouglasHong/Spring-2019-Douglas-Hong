@@ -80,16 +80,19 @@ public class Spreadsheet implements Grid{
 	public String getGridText(){
 		String grid = "   |";
 		char columnChar = 'A';
+		//creates a letter for each column
 		for(int i = 0; i < numCol; i++) {
 			grid += (columnChar + "         |");
 			columnChar++;
 		}
+		//creates the row number
 		for(int j = 0; j < numRow; j++) {
 			if((j+1) < 10) {
-				grid += ("\n" + (j+1) + "  |");
+				grid += "\n" + (j+1) + "  |";
 			}else{ // one less space if the number is 10 or greater
-				grid += ("\n" + (j+1) + " |");
+				grid += "\n" + (j+1) + " |";
 			}
+			//adds the cell text and makes sure it's 10 spaces
 			for(int k = 0; k < numCol; k++) {
 				grid += sheet[j][k].abbreviatedCellText();
 				for(int l = sheet[j][k].abbreviatedCellText().length(); l < 10; l++){
