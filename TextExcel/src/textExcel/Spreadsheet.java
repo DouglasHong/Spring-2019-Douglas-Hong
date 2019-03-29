@@ -24,14 +24,16 @@ public class Spreadsheet implements Grid{
 	//processes the user input and stores values in the correct cells
 	public String processCommand(String command){
 		SpreadsheetLocation loc;
-		if(command.length() <= 3) {
+		if(command.equals("")) { //satisfies checkpoint 1
+			return "";
+		}else if(command.length() <= 3) {
 			loc = new SpreadsheetLocation(command);
 			return getCell(loc).fullCellText();
 		}else if(command.substring(0, 5).equalsIgnoreCase("clear")){
 			clear(command);
 			return getGridText();
 		}else{
-			assignCell(command); // assigns percent, value, formula, and text cells
+			assignCell(command); 
 			return getGridText();
 		}	
 	}
