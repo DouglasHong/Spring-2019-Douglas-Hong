@@ -18,7 +18,7 @@ public class TextExcel{
         while(!expression.equalsIgnoreCase("quit")) {
         	System.out.println(sheet.processCommand(expression));
         	System.out.println("Enter a command:(Type 'quit' to quit)");
-        	expression = userInput.nextLine();
+          	expression = userInput.nextLine();
         }
         System.out.println("Spreadsheet stopped");
 	}
