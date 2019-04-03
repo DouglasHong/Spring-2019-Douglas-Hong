@@ -38,7 +38,6 @@ public class FormulaCell extends RealCell {
 					RealCell real = (RealCell)sheet[loc.getRow()][loc.getCol()];
 					answer += real.getDoubleValue();
 					numCount++;
-					System.out.println(answer);
 				}
 			}
 			if(splitText[0].equalsIgnoreCase("AVG")) {
