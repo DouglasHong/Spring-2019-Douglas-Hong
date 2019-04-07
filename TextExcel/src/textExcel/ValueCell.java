@@ -6,11 +6,9 @@ package textExcel;
  * @version 3/27/2019
  */
 public class ValueCell extends RealCell{
-	private String text;
 	//calls the super constructor and stores a value in the text field
 	public ValueCell(String text) {
 		super(text);
-		this.text = text;
 	}
 	//calls RealCell's fullCellText for cell inspection
 	public String fullCellText() {

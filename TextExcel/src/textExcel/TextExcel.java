@@ -22,5 +22,4 @@ public class TextExcel{
         }
         System.out.println("Spreadsheet stopped");
 	}
-	
 }

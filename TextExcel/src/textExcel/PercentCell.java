@@ -6,11 +6,9 @@ package textExcel;
  * @version 3/27/2019
  */
 public class PercentCell extends RealCell { 
-	private String text;
 	//calls the super constructor and stores a value in the text field
 	public PercentCell(String text) {
 		super(text);
-		this.text = text;
 	}
 	//prints the double value as a String
 	public String fullCellText() {
@@ -29,6 +27,6 @@ public class PercentCell extends RealCell {
 	}
 	//converts the percentage to decimal form
 	public double getDoubleValue() {
-		return Double.parseDouble(text.substring(0, text.length()-1))/100;
+		return Double.parseDouble(super.fullCellText().substring(0, super.fullCellText().length()-1))/100;
 	}
 }
