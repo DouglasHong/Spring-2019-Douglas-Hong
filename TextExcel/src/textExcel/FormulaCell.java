@@ -22,11 +22,11 @@ public class FormulaCell extends RealCell {
 	//splits the formula to do multiple operations with it and return a double value
 	public double getDoubleValue() {
 		String textWithoutParentheses = super.fullCellText().substring(2, super.fullCellText().length()-1);
-		String[] splitText = textWithoutParentheses.split(" ");
+		String[] splitFormula = textWithoutParentheses.split(" ");
 		double answer = 0;
 		int numCount = 0; //counter for the number of times a number has been added/changed
-		if(splitText[0].equalsIgnoreCase("SUM") || splitText[0].equalsIgnoreCase("AVG")) { //handles sum and avg formulas
-			String[] splitCell = splitText[1].split("-");
+		if(splitFormula[0].equalsIgnoreCase("SUM") || splitFormula[0].equalsIgnoreCase("AVG")) { //handles sum and avg formulas
+			String[] splitCell = splitFormula[1].split("-");
 			int startRow = Integer.parseInt(splitCell[0].substring(1, splitCell[0].length()));
 			char startCol = splitCell[0].toUpperCase().charAt(0);
 			int endRow = Integer.parseInt(splitCell[1].substring(1, splitCell[0].length()));
@@ -39,28 +39,28 @@ public class FormulaCell extends RealCell {
 					numCount++;
 				}
 			}
-			if(splitText[0].equalsIgnoreCase("AVG")) {
+			if(splitFormula[0].equalsIgnoreCase("AVG")) {
 				answer /= numCount;
 			}
 		}else { //handles formula without keywords
 			//converts each cell identifier into a double value
-			for(int i = 0; i < splitText.length; i++) {
-				if(splitText[i].charAt(0) >= 'A' && splitText[i].charAt(0) <= 'l') {
-					SpreadsheetLocation loc = new SpreadsheetLocation(splitText[i]);
+			for(int i = 0; i < splitFormula.length; i++) {
+				if(splitFormula[i].charAt(0) >= 'A' && splitFormula[i].charAt(0) <= 'l') {
+					SpreadsheetLocation loc = new SpreadsheetLocation(splitFormula[i]);
 					RealCell real = (RealCell)cells[loc.getRow()][loc.getCol()];
-					splitText[i] = real.getDoubleValue() + "";
+					splitFormula[i] = real.getDoubleValue() + "";
 				}
 			}
-			answer = Double.parseDouble(splitText[0]);
-			for(int i = 0; i < splitText.length; i++) {
-				if(splitText[i].equals("+")){
-					answer += Double.parseDouble(splitText[i+1]);
-				}else if(splitText[i].equals("-")) {
-					answer -= Double.parseDouble(splitText[i+1]);
-				}else if(splitText[i].equals("*")) {
-					answer *= Double.parseDouble(splitText[i+1]);
-				}else if(splitText[i].equals("/")){
-					answer /= Double.parseDouble(splitText[i+1]);
+			answer = Double.parseDouble(splitFormula[0]);
+			for(int i = 0; i < splitFormula.length; i++) {
+				if(splitFormula[i].equals("+")){
+					answer += Double.parseDouble(splitFormula[i+1]);
+				}else if(splitFormula[i].equals("-")) {
+					answer -= Double.parseDouble(splitFormula[i+1]);
+				}else if(splitFormula[i].equals("*")) {
+					answer *= Double.parseDouble(splitFormula[i+1]);
+				}else if(splitFormula[i].equals("/")){
+					answer /= Double.parseDouble(splitFormula[i+1]);
 				}
 			}
 		}
