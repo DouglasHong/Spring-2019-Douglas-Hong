@@ -11,14 +11,6 @@ public class FormulaCell extends RealCell {
 		super(text);
 		this.cells = cells;
 	}
-	//calls the super's fullCellText for cell inspection
-	public String fullCellText() {
-		return super.fullCellText();
-	}
-	//calls the super's abbreviatedCellText to fit the grid
-	public String abbreviatedCellText() {
-		return super.abbreviatedCellText();
-	}
 	//splits the formula to do multiple operations with it and return a double value
 	public double getDoubleValue() {
 		String textWithoutParentheses = super.fullCellText().substring(2, super.fullCellText().length()-1);
