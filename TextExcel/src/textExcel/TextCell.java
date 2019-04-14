@@ -24,7 +24,7 @@ public class TextCell implements Comparable, Cell{
 	public int compareTo(Object obj) {
 		if (obj instanceof TextCell) {
 			TextCell cell = (TextCell)obj;
-			return fullCellText().compareTo(cell.fullCellText());
+			return fullCellText().compareTo(cell.fullCellText()); //calls String class's compareTo method
 		}else {
 			return -1;
 		}

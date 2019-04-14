@@ -96,7 +96,7 @@ public class Spreadsheet implements Grid{
 			//adds the cell text and makes sure it's 10 spaces
 			for(int col = 0; col < numCol; col++) {
 				grid += sheet[row][col].abbreviatedCellText();
-				for(int l = sheet[row][col].abbreviatedCellText().length(); l < 10; l++){
+				for(int numSpaces = sheet[row][col].abbreviatedCellText().length(); numSpaces < 10; numSpaces++){
 					grid += " ";
 				}
 				grid += "|";
@@ -112,45 +112,46 @@ public class Spreadsheet implements Grid{
 		char startCol = cellRegion[0].toUpperCase().charAt(0);
 		int endRow = Integer.parseInt(cellRegion[1].substring(1, cellRegion[1].length()));
 		char endCol = cellRegion[1].toUpperCase().charAt(0);
-		ArrayList<Cell> sortCells = new ArrayList<Cell>();
+		ArrayList<Cell> sortedCells = new ArrayList<Cell>();
 		//fills in the arraylist with each cell in the region
 		for(int i = startRow; i <= endRow; i++) {
 			for(char j = startCol; j <= endCol; j++) {
 				SpreadsheetLocation loc = new SpreadsheetLocation(j + "" + i);
-				sortCells.add(getCell(loc));
+				sortedCells.add(getCell(loc));
 			}
 		}
 		//the arraylist is sorted by using the compareTo methods
-		for(int i = 0; i < sortCells.size(); i++) {
-			for(int j = 0; j < sortCells.size()-1; j++) {
-				if(sortCells.get(i) instanceof TextCell) {
-					TextCell firstCell = (TextCell)sortCells.get(j);
-					TextCell secondCell = (TextCell)sortCells.get(j+1);
+		for(int i = 0; i < sortedCells.size(); i++) {
+			for(int j = 0; j < sortedCells.size()-1; j++) {
+				if(sortedCells.get(i) instanceof TextCell) {
+					TextCell firstCell = (TextCell)sortedCells.get(j);
+					TextCell secondCell = (TextCell)sortedCells.get(j+1);
 					TextCell temp;
+					//if the number/text is greater and the user wants sorta, it is moved back to the next index; if the number/text is less and the user wants sortd, it is also moved to the next index
 					if((firstCell.compareTo(secondCell) > 0 && command.substring(0, 5).equalsIgnoreCase("sorta")) || (firstCell.compareTo(secondCell) < 0 && command.substring(0, 5).equalsIgnoreCase("sortd"))) {
 						temp = firstCell;
-						sortCells.set(j, secondCell);
-						sortCells.set(j+1, temp);
+						sortedCells.set(j, secondCell);
+						sortedCells.set(j+1, temp);
 					}
-				}else if(sortCells.get(i) instanceof RealCell){
-					RealCell firstCell = (RealCell)sortCells.get(j);
-					RealCell secondCell = (RealCell)sortCells.get(j+1);
+				}else if(sortedCells.get(i) instanceof RealCell){
+					RealCell firstCell = (RealCell)sortedCells.get(j);
+					RealCell secondCell = (RealCell)sortedCells.get(j+1);
 					RealCell temp;
 					if(((firstCell.compareTo(secondCell) > 0 && command.substring(0, 5).equalsIgnoreCase("sorta")) || (firstCell.compareTo(secondCell) < 0 && command.substring(0, 5).equalsIgnoreCase("sortd")))) {
 						temp = firstCell;
-						sortCells.set(j, secondCell);
-						sortCells.set(j+1, temp);
+						sortedCells.set(j, secondCell);
+						sortedCells.set(j+1, temp);
 					}
 				}
 			}
 		}
 		//once the arraylist has been sorted, the sheet can updated with the cells in the correct order
-		int index = 0;
+		int arrayIndex = 0;
 		for(int i = startRow; i <= endRow; i++) {
 			for(char j = startCol; j <= endCol; j++) {
 				SpreadsheetLocation loc = new SpreadsheetLocation(j + "" + i);
-				sheet[loc.getRow()][loc.getCol()] = sortCells.get(index);
-				index++;
+				sheet[loc.getRow()][loc.getCol()] = sortedCells.get(arrayIndex);
+				arrayIndex++;
 			}
 		}
 	}
