@@ -5,7 +5,7 @@ package textExcel;
  * @author Douglas Hong
  * @version 3/27/2019
  */	
-public class RealCell implements Cell {
+public class RealCell implements Comparable, Cell {
 	private String text;
 	//the contructor only has to store a String, which is the user input
 	public RealCell(String text) {

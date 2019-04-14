@@ -5,7 +5,7 @@ package textExcel;
  * @author Douglas Hong
  * @version 3/27/2019
  */
-public class TextCell implements Cell{ 
+public class TextCell implements Comparable, Cell{ 
 	private String text;
 	//the constructor stores a String/user input
 	public TextCell(String text) {

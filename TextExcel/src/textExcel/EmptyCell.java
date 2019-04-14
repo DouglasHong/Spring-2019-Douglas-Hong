@@ -17,9 +17,5 @@ public class EmptyCell implements Cell {
 	public String abbreviatedCellText() {
 		return "          ";
 	}
-	public int compareTo(Object obj) {
-		return 0;
-	}
-
 }
 
