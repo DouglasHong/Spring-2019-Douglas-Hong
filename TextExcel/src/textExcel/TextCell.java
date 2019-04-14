@@ -20,6 +20,7 @@ public class TextCell implements Comparable, Cell{
 		String abbrev = text + "          ";
 		return abbrev.substring(0,10);
 	}
+	//compares two TextCells and returns 1, -1, or 0 depending on the alphabetical order of the text 
 	public int compareTo(Object obj) {
 		if (obj instanceof TextCell) {
 			TextCell cell = (TextCell)obj;

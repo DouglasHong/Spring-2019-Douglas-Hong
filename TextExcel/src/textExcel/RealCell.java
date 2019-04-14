@@ -24,17 +24,16 @@ public class RealCell implements Comparable, Cell {
 	public double getDoubleValue() {
 		return Double.parseDouble(text);
 	}
+	//compares two RealCells by their double value and returns 1, -1, or 0 depending on if a number is greater, less, or equal to the other one
 	public int compareTo(Object obj) {
 		if(obj instanceof RealCell) {
 			RealCell real = (RealCell)obj;
-			if(getDoubleValue() < real.getDoubleValue()) {
+			if(getDoubleValue() < real.getDoubleValue()) { 
 				return -1;
 			}else if (getDoubleValue() > real.getDoubleValue()) {
 				return 1;
-			}else {
-				return 0;
 			}
 		}
-		return -1;
+		return 0;
 	}
 }
