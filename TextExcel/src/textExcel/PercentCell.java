@@ -12,16 +12,16 @@ public class PercentCell extends RealCell {
 	}
 	//prints the double value as a String
 	public String fullCellText() {
-		return getDoubleValue()/100 + "";
+		return getDoubleValue() + "";
 	}
 	//makes sure the decimal is truncated and only the whole number is printed
 	public String abbreviatedCellText() {
-		String abbrev = (int)getDoubleValue() + "";
+		String abbrev = (int)(getDoubleValue()*100) + "";
 		abbrev += "%          ";
 		return abbrev.substring(0, 10);
 	}
 	//converts the percentage to decimal form
 	public double getDoubleValue() {
-		return Double.parseDouble(super.fullCellText().substring(0, super.fullCellText().length()-1));
+		return Double.parseDouble(super.fullCellText().substring(0, super.fullCellText().length()-1))/100;
 	}
 }

@@ -1,5 +1,7 @@
 package textExcel;
 
+import java.util.*;
+
 /* Spreadsheet handles the user input and prints a full grid.
  * 
  * @author Douglas Hong
@@ -15,11 +17,7 @@ public class Spreadsheet implements Grid{
 		numRow = 20;
 		numCol = 12;
 		sheet = new Cell[numRow][numCol];
-		for(int row = 0; row < numRow; row++) {
-			for(int col = 0; col < numCol; col++) {
-				sheet[row][col] = new EmptyCell();
-			}
-		}
+		clearGrid();
 	}
 	//processes the user input and stores values in the correct cells
 	public String processCommand(String command){
@@ -30,25 +28,28 @@ public class Spreadsheet implements Grid{
 			loc = new SpreadsheetLocation(command);
 			return getCell(loc).fullCellText();
 		}else if(command.substring(0, 5).equalsIgnoreCase("clear")){
-			clear(command);
+			if(command.equalsIgnoreCase("clear")) {
+				clearGrid();
+			}else {
+				String[] splitInput = command.split(" ", 2);
+				loc = new SpreadsheetLocation(splitInput[1]);
+				sheet[loc.getRow()][loc.getCol()] = new EmptyCell();
+			}
+			return getGridText();
+		}else if(command.substring(0, 4).equalsIgnoreCase("sort")){
+			sort(command);
 			return getGridText();
 		}else{
 			assignCell(command); 
 			return getGridText();
 		}	
 	}
-	//clears the whole grid, or clears only one cell
-	public void clear(String input) {
-		if(input.equalsIgnoreCase("clear")) {
-			for(int row = 0; row < numRow; row++) {
-				for(int col = 0; col < numCol; col++) {
-					sheet[row][col] = new EmptyCell();
-				}
+	//clears the entire grid by filling in each cell with an EmptyCell
+	public void clearGrid() {
+		for(int row = 0; row < numRow; row++) {
+			for(int col = 0; col < numCol; col++){
+				sheet[row][col] = new EmptyCell();
 			}
-		}else {
-			String[] splitInput = input.split(" ", 2);
-			SpreadsheetLocation loc = new SpreadsheetLocation(splitInput[1]);
-			sheet[loc.getRow()][loc.getCol()] = new EmptyCell();
 		}
 	}
 	//assigns values to a PercentCell, FormulaCell, ValueCell, or TextCell
@@ -81,28 +82,76 @@ public class Spreadsheet implements Grid{
 	//prints the whole grid, along with the cells in it
 	public String getGridText(){
 		String grid = "   |";
-		char columnChar = 'A';
 		//creates a letter for each column
-		for(int i = 0; i < numCol; i++) {
+		for(char columnChar = 'A'; columnChar <= 'L'; columnChar++) {
 			grid += (columnChar + "         |");
-			columnChar++;
 		}
 		//creates the row number
-		for(int j = 0; j < numRow; j++) {
-			if((j+1) < 10) {
-				grid += "\n" + (j+1) + "  |";
+		for(int row = 0; row < numRow; row++) {
+			if((row+1) < 10) {
+				grid += "\n" + (row+1) + "  |";
 			}else{ // one less space if the number is 10 or greater
-				grid += "\n" + (j+1) + " |";
+				grid += "\n" + (row+1) + " |";
 			}
 			//adds the cell text and makes sure it's 10 spaces
-			for(int k = 0; k < numCol; k++) {
-				grid += sheet[j][k].abbreviatedCellText();
-				for(int l = sheet[j][k].abbreviatedCellText().length(); l < 10; l++){
+			for(int col = 0; col < numCol; col++) {
+				grid += sheet[row][col].abbreviatedCellText();
+				for(int l = sheet[row][col].abbreviatedCellText().length(); l < 10; l++){
 					grid += " ";
 				}
 				grid += "|";
 			}
 		}
 		return grid + "\n";
+	}
+	//this method handles ascending and descending sorting 
+	public void sort(String command) {
+		String[] splitCommand = command.split(" ");
+		String[] cellRegion = splitCommand[1].split("-");
+		int startRow = Integer.parseInt(cellRegion[0].substring(1, cellRegion[0].length()));
+		char startCol = cellRegion[0].toUpperCase().charAt(0);
+		int endRow = Integer.parseInt(cellRegion[1].substring(1, cellRegion[1].length()));
+		char endCol = cellRegion[1].toUpperCase().charAt(0);
+		ArrayList<Cell> sortCells = new ArrayList<Cell>();
+		//fills in the arraylist with each cell in the region
+		for(int i = startRow; i <= endRow; i++) {
+			for(char j = startCol; j <= endCol; j++) {
+				SpreadsheetLocation loc = new SpreadsheetLocation(j + "" + i);
+				sortCells.add(getCell(loc));
+			}
+		}
+		//the arraylist is sorted by using the compareTo methods
+		for(int i = 0; i < sortCells.size(); i++) {
+			for(int j = 0; j < sortCells.size()-1; j++) {
+				if(sortCells.get(i) instanceof TextCell) {
+					TextCell firstCell = (TextCell)sortCells.get(j);
+					TextCell secondCell = (TextCell)sortCells.get(j+1);
+					TextCell temp;
+					if((firstCell.compareTo(secondCell) > 0 && command.substring(0, 5).equalsIgnoreCase("sorta")) || (firstCell.compareTo(secondCell) < 0 && command.substring(0, 5).equalsIgnoreCase("sortd"))) {
+						temp = firstCell;
+						sortCells.set(j, secondCell);
+						sortCells.set(j+1, temp);
+					}
+				}else if(sortCells.get(i) instanceof RealCell){
+					RealCell firstCell = (RealCell)sortCells.get(j);
+					RealCell secondCell = (RealCell)sortCells.get(j+1);
+					RealCell temp;
+					if(((firstCell.compareTo(secondCell) > 0 && command.substring(0, 5).equalsIgnoreCase("sorta")) || (firstCell.compareTo(secondCell) < 0 && command.substring(0, 5).equalsIgnoreCase("sortd")))) {
+						temp = firstCell;
+						sortCells.set(j, secondCell);
+						sortCells.set(j+1, temp);
+					}
+				}
+			}
+		}
+		//once the arraylist has been sorted, the sheet can updated with the cells in the correct order
+		int index = 0;
+		for(int i = startRow; i <= endRow; i++) {
+			for(char j = startCol; j <= endCol; j++) {
+				SpreadsheetLocation loc = new SpreadsheetLocation(j + "" + i);
+				sheet[loc.getRow()][loc.getCol()] = sortCells.get(index);
+				index++;
+			}
+		}
 	}
 }

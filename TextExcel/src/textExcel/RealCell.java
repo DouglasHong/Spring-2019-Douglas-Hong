@@ -24,4 +24,17 @@ public class RealCell implements Cell {
 	public double getDoubleValue() {
 		return Double.parseDouble(text);
 	}
+	public int compareTo(Object obj) {
+		if(obj instanceof RealCell) {
+			RealCell real = (RealCell)obj;
+			if(getDoubleValue() < real.getDoubleValue()) {
+				return -1;
+			}else if (getDoubleValue() > real.getDoubleValue()) {
+				return 1;
+			}else {
+				return 0;
+			}
+		}
+		return -1;
+	}
 }

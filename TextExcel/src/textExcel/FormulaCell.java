@@ -23,9 +23,9 @@ public class FormulaCell extends RealCell {
 			char startCol = splitCell[0].toUpperCase().charAt(0);
 			int endRow = Integer.parseInt(splitCell[1].substring(1, splitCell[0].length()));
 			char endCol = splitCell[1].toUpperCase().charAt(0);
-			for(char i = startCol; i <= endCol; i++) {
-				for(int j = startRow; j <= endRow; j++) {
-					SpreadsheetLocation loc = new SpreadsheetLocation(i + "" + j);
+			for(int i = startRow; i <= endRow; i++) {
+				for(char j = startCol; j <= endCol; j++) {
+					SpreadsheetLocation loc = new SpreadsheetLocation(j + "" + i);
 					RealCell real = (RealCell)cells[loc.getRow()][loc.getCol()];
 					answer += real.getDoubleValue();
 					numCount++;

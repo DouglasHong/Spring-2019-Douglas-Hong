@@ -20,4 +20,12 @@ public class TextCell implements Cell{
 		String abbrev = text + "          ";
 		return abbrev.substring(0,10);
 	}
+	public int compareTo(Object obj) {
+		if (obj instanceof TextCell) {
+			TextCell cell = (TextCell)obj;
+			return fullCellText().compareTo(cell.fullCellText());
+		}else {
+			return -1;
+		}
+	}
 }
