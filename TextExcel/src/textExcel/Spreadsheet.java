@@ -67,11 +67,11 @@ public class Spreadsheet implements Grid{
 			sheet[loc.getRow()][loc.getCol()] = new ValueCell(splitInput[1]);
 		}
 	}
-	//gets the total number of rows
+	//gets the total number of rows in the sheet
 	public int getRows(){
 		return numRow;
 	}
-	//gets the total number of columns
+	//gets the total number of columns in the sheet
 	public int getCols(){
 		return numCol;
 	}
