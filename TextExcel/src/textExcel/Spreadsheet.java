@@ -123,25 +123,14 @@ public class Spreadsheet implements Grid{
 		//the arraylist is sorted by using the compareTo methods
 		for(int i = 0; i < sortedCells.size(); i++) {
 			for(int j = 0; j < sortedCells.size()-1; j++) {
-				if(sortedCells.get(i) instanceof TextCell) {
-					TextCell firstCell = (TextCell)sortedCells.get(j);
-					TextCell secondCell = (TextCell)sortedCells.get(j+1);
-					TextCell temp;
-					//if the number/text is greater and the user wants sorta, it is moved back to the next index; if the number/text is less and the user wants sortd, it is also moved to the next index
-					if((firstCell.compareTo(secondCell) > 0 && command.substring(0, 5).equalsIgnoreCase("sorta")) || (firstCell.compareTo(secondCell) < 0 && command.substring(0, 5).equalsIgnoreCase("sortd"))) {
-						temp = firstCell;
-						sortedCells.set(j, secondCell);
-						sortedCells.set(j+1, temp);
-					}
-				}else if(sortedCells.get(i) instanceof RealCell){
-					RealCell firstCell = (RealCell)sortedCells.get(j);
-					RealCell secondCell = (RealCell)sortedCells.get(j+1);
-					RealCell temp;
-					if(((firstCell.compareTo(secondCell) > 0 && command.substring(0, 5).equalsIgnoreCase("sorta")) || (firstCell.compareTo(secondCell) < 0 && command.substring(0, 5).equalsIgnoreCase("sortd")))) {
-						temp = firstCell;
-						sortedCells.set(j, secondCell);
-						sortedCells.set(j+1, temp);
-					}
+				Cell firstCell = sortedCells.get(j);
+				Cell secondCell = sortedCells.get(j+1);
+				Cell temp;
+				//if the number/text is greater and the user wants sorta, it is moved back to the next index; if the number/text is less and the user wants sortd, it is also moved to the next index
+				if((firstCell.compareTo(secondCell) > 0 && command.substring(0, 5).equalsIgnoreCase("sorta")) || (firstCell.compareTo(secondCell) < 0 && command.substring(0, 5).equalsIgnoreCase("sortd"))) {
+					temp = firstCell;
+					sortedCells.set(j, secondCell);
+					sortedCells.set(j+1, temp);
 				}
 			}
 		}
